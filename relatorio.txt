@@ -1,1 +1,7 @@
-A biblioteca possui apenas um objeto, este objeto se contra no formato ELF
+A biblioteca possui apenas um objeto, este objeto se contra no formato ELF.
+O objeto que existe neste arquivo tem o nome de foo.o.
+O objto foo esta em formato 32-bits arquitetura little endianness.
+O objeto esta em um forto ELF origial e corrente.
+A ABI do objeto esta em formato "System V".
+O objeto n possui nao possui um ISA (instruction set architecture) especifico.
+
