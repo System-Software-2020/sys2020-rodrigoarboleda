@@ -1,0 +1,1 @@
+A biblioteca possui apenas um objeto, este objeto se contra no formato ELF
