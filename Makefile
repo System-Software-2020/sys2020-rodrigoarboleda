@@ -15,3 +15,6 @@ $(bin): $(obj) $(lib)
 
 %.o: %.c
 	$(CC) $(CPP_FLAGS) $(LD_FLAGS) -c $<
+
+clean:
+	rm -f main001.o
