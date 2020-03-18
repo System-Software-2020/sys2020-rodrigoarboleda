@@ -4,14 +4,14 @@ bin = main
 
 CC = gcc
 CPP_FLAGS =
-C_FLAGS = -m32
-LD_FLAGS = -L.
+C_FLAGS = -m32 -fno-pic -fno-pie
+LD_FLAGS = -L. -m32
 # Recipe
 
 all: $(bin)
 
 $(bin): $(obj) $(lib)
-	$(CC) $(LD_FLAGS) $(obj) -o $(bin) -l$(lib:lib%.a=%)
+	$(CC) $(LD_FLAGS) $(obj) -l$(lib:lib%.a=%) -o $(bin) 
 
 %.o: %.c
 	$(CC) $(CPP_FLAGS) $(C_FLAGS) -c $<
