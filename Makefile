@@ -1,5 +1,5 @@
 lib = libfoo.a
-obj = main001.o 
+obj = main001.o
 bin = main
 
 CC = gcc
@@ -19,11 +19,11 @@ $(bin): $(obj) $(lib)
 $(lib): $(lib:lib%.a=%.o)
 	$(AR) $(A_FLAGS) $(lib) $<
 
-$(lib:lib%.a=%.o): $(lib:lib%.a=%.c)
+$(lib:lib%.a=%.o): $(lib:lib%.a=%.c) $(lib:lib%.a=%.h)
 	$(CC) $(C_FLAGS) -c $<
 
 %.o: %.c
 	$(CC) $(CPP_FLAGS) $(C_FLAGS) -c $<
 
 clean:
-	rm -f main001.o
+	rm -f $(bin) $(obj) $(lib:lib%.a=%.o)
