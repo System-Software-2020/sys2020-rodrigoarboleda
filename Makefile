@@ -4,7 +4,7 @@ bin = main
 
 CC = gcc
 CPP_FLAGS =
-C_FLAGS = -m32 -fno-pic -fno-pie
+C_FLAGS = -m32 -fno-pic -fno-pie -O0
 LD_FLAGS = -L. -m32
 AR = ar
 A_FLAGS = crs
@@ -20,7 +20,7 @@ $(lib): $(lib:lib%.a=%.o)
 	$(AR) $(A_FLAGS) $(lib) $<
 
 $(lib:lib%.a=%.o): $(lib:lib%.a=%.c) $(lib:lib%.a=%.h)
-	$(CC) $(C_FLAGS) -c $<
+	$(CC) $(CPP_FLAGS) $(C_FLAGS) -c $<
 
 %.o: %.c
 	$(CC) $(CPP_FLAGS) $(C_FLAGS) -c $<
