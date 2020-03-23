@@ -1,7 +1,28 @@
-A biblioteca possui apenas um objeto, este objeto se contra no formato ELF.
-O objeto que existe neste arquivo tem o nome de foo.o.
-O objto foo esta em formato 32-bits arquitetura little endianness.
-O objeto esta em um forto ELF origial e corrente.
-A ABI do objeto esta em formato "System V".
-O objeto n possui nao possui um ISA (instruction set architecture) especifico.
+	Relatorio - Rodrigo Cesar Arboleda #10416722
+
+	A biblioteca passada possui apenas um objeto no formato ELF, este objeto passado possui o nome de foo.o e está no formato da arquitetura de 32-bits e em formato little endiannes. Além disso no objeto está marcado que ele pertence a um formato ELF orginal e corrente alem de sua ABI está em formato "System V". O objeto n possui nao possui um ISA (instruction set architecture) especifico.
+	
+	Para ler estás informacoes foi utilizado o comando
+		hexdump -C libfoo.a
+		como sugerido, e com isso utilizando o padrao do formato ELF, tirado as informacoes do binario.
+
+	Para descompilar a biblioteca e ver seu codigo assembly foi feito o seguinte:
+		Primeiro foi extraido todos os objetos da lib atraves do seguinte comando:
+			ar -x libfoo.a
+		Tendo o objeto foo.o foi feito o disassemble do objeto da seguinte forma:
+			objdump -d foo.o
+		Com isso temos somente as instrucoes da funcao foo:
+			00000000 <foo>:
+   			0:	55                   	push   %ebp
+   			1:	89 e5                	mov    %esp,%ebp
+			   3:	8b 55 08             	mov    0x8(%ebp),%edx
+		   	6:	8b 45 0c             	mov    0xc(%ebp),%eax
+		   	9:	01 d0                	add    %edx,%eax
+		   	b:	5d                   	pop    %ebp
+		   	c:	c3                   	ret    
+		
+		Assim e possivel analisar e verificar que a funcao recebe os parametros e os soma, e retorna o resultado desta soma.
+
+	Com essas informacoes foi reescrita a biblioteca.
+
 
