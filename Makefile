@@ -1,6 +1,7 @@
 lib = libfoo.a
 obj = main001.o
-bin = main
+bin = main001
+prefix = foo
 
 CC = gcc
 CPP_FLAGS =
@@ -24,6 +25,18 @@ $(lib:lib%.a=%.o): $(lib:lib%.a=%.c) $(lib:lib%.a=%.h)
 
 %.o: %.c
 	$(CC) $(CPP_FLAGS) $(C_FLAGS) -c $<
+
+install: $(bin) $(lib) $(lib:lib%.a=%.h)
+	mkdir $(prefix)
+	mkdir $(prefix)/bin
+	mkdir $(prefix)/include
+	mkdir $(prefix)/lib
+	cp $(bin) $(prefix)/bin
+	cp $(lib) $(prefix)/lib
+	cp $(lib:lib%.a=%.h) $(prefix)/include
+
+uninstall:
+	rm -r $(prefix)/
 
 clean:
 	rm -f $(bin) $(obj) $(lib:lib%.a=%.o)
